@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th='http://www.thymeleaf.org'>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+
+<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
+<script src='/js/app.js'></script>
+
+<title>Send Message</title>
+</head>
+
+<body>
+<div class='card card-body bg-light'>
+<h1>Send Message</h1>
+<br/>
+
+<form th:action='@{/messages}' method='POST'>
+	<div class='form-group row'>
+		<div class='col-xs-4'>
+			<label for='message'>Message : </label>
+		    	<input type='text' class='form-control' name='message' id='message'>
+	    	</div>
+	    </div>
+	<input type='SUBMIT' value='Send'>
+</form>
+</div>
+</body>
+</html>
