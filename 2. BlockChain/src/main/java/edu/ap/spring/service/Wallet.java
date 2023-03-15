@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
-import edu.ap.spring.aop.WalletCheck;
 import edu.ap.spring.transaction.Transaction;
 
 @Service
@@ -58,8 +57,17 @@ public class Wallet {
 		return total;
 	}
 	
-	@WalletCheck
 	public Transaction sendFunds(PublicKey recipient, float value) throws Exception {
+		
+		if(getBalance() < value) {
+			System.out.println("# Not Enough funds to send transaction. Transaction Discarded.");
+			throw new Exception();
+		}
+
+		if(this.getPublicKey() == recipient) {
+			System.out.println("# You cannot transfer funds to yourself. Transaction Discarded.");
+			throw new Exception();
+		}
 		Transaction newTransaction = new Transaction(publicKey, recipient , value);
 		newTransaction.generateSignature(privateKey);
 				

@@ -1,8 +1,6 @@
 package edu.ap.spring.controller;
 
 import javax.annotation.PostConstruct;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -106,25 +104,5 @@ public class MainController {
 	@GetMapping(value="/valid")
 	public @ResponseBody String testValidity() {
 		return "Valid : " + this.bChain.isValid();
-	}
-
-	@GetMapping(value="/login")
-  	public String getLoginForm() {
-	  return "login";
-  	}
-
-	@PostMapping(value="/login")
-  	public String transaction(@RequestParam("user") String user, 
-                              @RequestParam("pwd") String pwd,
-							  HttpServletResponse response) {
-	
-		if(user.equalsIgnoreCase("admin") && pwd.equalsIgnoreCase("admin123")) {
-			Cookie cookie = new Cookie("Authorisation", "admin");
-    		response.addCookie(cookie);			
-			return "redirect:/transaction";
-		}
-		else {
-			return "redirect:/login";
-		}
 	}
 }
