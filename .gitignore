@@ -40,3 +40,6 @@ target
 secrets.yml
 .gradletasknamecache
 .sts4-cache
+
+#Any zips
+**.zip
